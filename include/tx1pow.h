@@ -1,12 +1,13 @@
 #ifndef TX1POW_H_
 #define TX1POW_H_
 
+#define MAX_BUFF 128
 #define SYSFS_INA3321_PATH "/sys/class/i2c-dev/i2c-1/device"
 
 typedef unsigned int tx1pow_ina3321_input;
 enum tx1pow_ina3321_inputs {
     /* main module power input */
-    VDD_IN = 1,
+    VDD_IN = 0,
     /* GPU Power rail */
     VDD_GPU,
     /* CPU Power rail */
@@ -35,4 +36,5 @@ enum tx1pow_meas_ch {
 void tx1pow_get_val(tx1pow_ina3321_input in,
                       tx1pow_ina3321_measure measure,
                       unsigned int *val);
+
 #endif // TX1POW_H_

@@ -1,6 +1,7 @@
 #ifndef TX1TEMP_H_
 #define TX1TEMP_H_
 
+#define MAX_BUFF 128
 #define SYSFS_TEMP_PATH "/sys/class/thermal"
 
 typedef unsigned int tx1temp_zone;
@@ -15,6 +16,6 @@ enum tx1temp_zones {
     FAN
 };
 
-void tx1temp_get_val(tx1temp_zone zone, unsigned int *val);
+void tx1temp_get_val(tx1temp_zone zone, unsigned long *val);
 
 #endif // TX1TEMP_H_
