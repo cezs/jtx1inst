@@ -1,0 +1,14 @@
+#+title: tx1inst
+
+Basic C library for accessing Tegra X1's INA3221 -- current and bus voltage monitor as well as on-module temperature sensors through sysf nodes.
+
+* Build and install
+#+begin_src sh
+mkdir build
+cd build
+cmake ..
+make
+#+end_src sh
+
+* License
+See [[LICENSE]] file.
