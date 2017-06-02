@@ -20,28 +20,34 @@
 // resistors' values [milli-ohms]
 static int rshunt[] = {20, 10, 10};
 
-// ...
+// TX1's specific registers
 static __u8 vshuntReg[] = {0x01, 0x03, 0x05};
 static __u8 vbusReg[] = {0x02, 0x04, 0x06};
 
+// read shunt voltage value
 static int convShuntVol(int file, int reg){
   uint16_t v = __bswap_16(i2c_smbus_read_word_data(file, reg));
   return (int)((v >> 3) * 40);
 }
 
+// read bus voltage value
 static int convBusVol(int file, int reg){
   uint16_t v = __bswap_16(i2c_smbus_read_word_data(file, reg));
   return (int)((v >> 3) * 8);
 }
 
+// calculate current using voltage and resistor values
 static int calcCurr(int v, int r) {
   return (int)(v/(float)r);
 }
 
+// calculate power using voltage and current values
 static int calcPow(int v, int i) {
   return (int)(v*i/1000);
 }
 
+// read INA3221's values from 0x42 and 0x43 addresses
+// using sysfs files
 static void tx1pow_get_val_sysf(tx1pow_ina3321_input in,
 			 tx1pow_ina3321_measure measure,
 			 unsigned int *val)
@@ -99,6 +105,7 @@ static void tx1pow_get_val_sysf(tx1pow_ina3321_input in,
 
 }
 
+// read INA3221's values from 0x40 using userspace i2c communication
 static int tx1pow_get_val_userspace_i2c(int i, unsigned int *val)
 {
   int file;
@@ -132,11 +139,12 @@ static int tx1pow_get_val_userspace_i2c(int i, unsigned int *val)
 
   *val = power;
 
-  /* close(file); */
+  close(file);
 
   return 0;
 }
 
+// read INA3221's values from 0x40, 0x42 and 0x43 addresses
 void tx1pow_get_val(tx1pow_ina3321_input in,
                     tx1pow_ina3321_measure measure,
                     unsigned int *val)
