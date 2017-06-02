@@ -1,3 +1,8 @@
+/**
+ * @file tx1inst.h
+ * @author cs
+ * @brief This header file collects all the header files specific to Jetson TX1.
+ */
 #ifndef TX1INST_H_
 #define TX1INST_H_
 

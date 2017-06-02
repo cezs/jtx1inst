@@ -1,8 +1,16 @@
+/**
+ * @file vars.h
+ * @author cs
+ * @brief This header file contains benchmark's data structures definitnions
+ */
 #ifndef VARS_H
 #define VARS_H
 
 #include <stdlib.h>
 
+/**
+ * @brief Benchmark's variables
+ */
 struct platform_vars
 {
     unsigned long *gpu_freqs; ///< GPU's operating frequencies (Hz)
@@ -12,7 +20,6 @@ struct platform_vars
     size_t emc_freqs_sz;
     size_t cpu_freqs_sz;
 };
-
 
 /**
  * @brief Structure holding measurements.
@@ -43,10 +50,13 @@ struct platform_metrics
     int pcb2_temp; ///< Tdiode_tegra on-module thermal zone (C)    
 };
 
+/**
+ * @brief Kernel operation metrics
+ */
 struct app_metrics
 {
-    int fps;
-    int flops;
+    int fps; ///< frames-per-second
+    int flops; ///< floating point operations per second
 };
 
 #endif

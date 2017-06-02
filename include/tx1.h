@@ -1,6 +1,14 @@
+/**
+ * @file tx1.h
+ * @author cs
+ * @brief This header file contains Jetson TX1 data and parameters.
+ */
 #ifndef TX1_H
 #define TX1_H
 
+/**
+ * @brief Available frequencies of Jetson TX1's GPU
+ */
 static const unsigned long jtx1_gpu_freqs[] = {
     76800000
     ,153600000
@@ -17,6 +25,9 @@ static const unsigned long jtx1_gpu_freqs[] = {
     ,998400000
 }; // [Hz]
 
+/**
+ * @brief Available frequencies of Jetson TX1's EMC
+ */
 static const unsigned long jtx1_emc_freqs[] = {
     /*40800000, 68000000, 102000000,*/ // problematic
     204000000,
