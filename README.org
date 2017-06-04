@@ -1,6 +1,6 @@
 #+title: jtx1inst
 
-Basic C library for accessing two Jetson TX1's INA3221 -- current and voltage monitors as well as on-module temperature sensors and other information such as GPU, CPUs and EMC operating frequencies -- either through sysf nodes and userspace I2C.
+Basic C library for accessing two Jetson TX1's INA3221 -- current and voltage monitors as well as on-module temperature sensors and other information such as GPU, CPUs and EMC operating frequencies -- either through sysf nodes or userspace I2C.
 
 * Build and install
 #+begin_src sh
