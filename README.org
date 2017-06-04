@@ -8,6 +8,8 @@ mkdir build
 cd build
 cmake ..
 make
+sudo make install
+sudo ldconfig
 #+end_src sh
 
 * License
