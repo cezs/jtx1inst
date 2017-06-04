@@ -1,21 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <string.h>
 #include <errno.h>    
-
-#include "tx1pow.h"
-
-// User-space I2C reading of INA3221 at 0x40
-/* #include <stdio.h> */
-/* #include <stdlib.h> */
-#include <stdbool.h>
-#include <linux/i2c-dev.h>
 #include <fcntl.h>
-#include <unistd.h>
+#include <stdbool.h>
 #include <stdint.h>
+#include <linux/i2c-dev.h>
 #include <byteswap.h>
+
+#include "jtx1pow.h"
 
 // resistors' values [milli-ohms]
 static int rshunt[] = {20, 10, 10};
@@ -46,23 +40,22 @@ static int calcPow(int v, int i) {
   return (int)(v*i/1000);
 }
 
-// read INA3221's values from 0x42 and 0x43 addresses
-// using sysfs files
-static void tx1pow_get_val_sysf(tx1pow_ina3321_input in,
-			 tx1pow_ina3321_measure measure,
-			 unsigned int *val)
+// read INA3221's values from 0x42 and 0x43 addresse using sysfs files
+static void jtx1_get_ina3221_sysf(jtx1_rail rail,
+				  jtx1_rail_type measure,
+				  unsigned int *val)
 {
   FILE *fp;
   int addr;
   int ans;
   char buff[MAX_BUFF];
-  char *meas = "voltage";
+  char *mea = "voltage";
     
-  if (in >= 0 && in <= 2) {
+  if (rail >= 0 && rail <= 2) {
     addr = 0;
-  } else if (in >= 3 && in <= 5) {
+  } else if (rail >= 3 && rail <= 5) {
     addr = 2;
-  } else if (in >= 6 && in <= 8) {
+  } else if (rail >= 6 && rail <= 8) {
     addr = 3;
   } else {
     addr = 2;
@@ -70,15 +63,15 @@ static void tx1pow_get_val_sysf(tx1pow_ina3321_input in,
 
   switch (measure) {
   case 0: {
-    meas = "voltage";
+    mea = "voltage";
     break;
   }
   case 1: {
-    meas = "power";
+    mea = "power";
     break;
   }
   case 2: {
-    meas = "current";
+    mea = "current";
     break;
   }
   default:
@@ -87,7 +80,7 @@ static void tx1pow_get_val_sysf(tx1pow_ina3321_input in,
 
   snprintf(buff, sizeof(buff),
 	   SYSFS_INA3321_PATH "/1-004%d/iio_device/in_%s" "%d" "_input",
-	   addr, meas, in % 2);
+	   addr, mea, rail % 2);
 
   fp = fopen(buff, "r");
 
@@ -106,7 +99,7 @@ static void tx1pow_get_val_sysf(tx1pow_ina3321_input in,
 }
 
 // read INA3221's values from 0x40 using userspace i2c communication
-static int tx1pow_get_val_userspace_i2c(int i, unsigned int *val)
+static int jtx1_get_ina3221_userspace_i2c(int rail, unsigned int *val)
 {
   int file;
   int adapter_nr = 1;
@@ -132,9 +125,9 @@ static int tx1pow_get_val_userspace_i2c(int i, unsigned int *val)
   }
 
   /* sleep(1); */
-  vshunt = convShuntVol(file, vshuntReg[i]);
-  vbus = convBusVol(file, vbusReg[i]);
-  curr = calcCurr(vshunt, rshunt[i]);
+  vshunt = convShuntVol(file, vshuntReg[rail]);
+  vbus = convBusVol(file, vbusReg[rail]);
+  curr = calcCurr(vshunt, rshunt[rail]);
   power = calcPow(vbus, curr);
 
   *val = power;
@@ -145,15 +138,15 @@ static int tx1pow_get_val_userspace_i2c(int i, unsigned int *val)
 }
 
 // read INA3221's values from 0x40, 0x42 and 0x43 addresses
-void tx1pow_get_val(tx1pow_ina3321_input in,
-                    tx1pow_ina3321_measure measure,
-                    unsigned int *val)
+void jtx1_get_ina3221(jtx1_rail rail,
+		      jtx1_rail_type measure,
+		      unsigned int *val)
 {
 
-  if (in >= 0 && in <= 2) {
-    tx1pow_get_val_userspace_i2c(in, val);
-  } else if (in >= 3 && in <= 8) {
-    tx1pow_get_val_sysf(in, measure,val);
+  if (rail >= 0 && rail <= 2) {
+    jtx1_get_ina3221_userspace_i2c(rail, val);
+  } else if (rail >= 3 && rail <= 8) {
+    jtx1_get_ina3221_sysf(rail, measure, val);
   } else {
   }
 
