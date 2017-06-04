@@ -5,9 +5,9 @@
 #include <string.h>
 #include <errno.h>
 
-#include "tx1temp.h"
+#include "jtx1temp.h"
 
-void tx1temp_get_val(tx1temp_zone zone, unsigned long *val)
+void jtx1_get_temp(jtx1_tzone zone, unsigned int *temp)
 {
     FILE *fp;
     char buff[MAX_BUFF];
@@ -27,5 +27,5 @@ void tx1temp_get_val(tx1temp_zone zone, unsigned long *val)
         fclose(fp);
     }
     
-    *val = ans;
+    *temp = ans;
 }

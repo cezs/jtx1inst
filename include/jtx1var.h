@@ -1,10 +1,10 @@
 /**
- * @file tx1.h
+ * @file jtx1par.h
  * @author cs
  * @brief This header file contains Jetson TX1 data and parameters.
  */
-#ifndef TX1_H
-#define TX1_H
+#ifndef JTX1PAR_H
+#define JTX1PAR_H
 
 /**
  * @brief Available frequencies of Jetson TX1's GPU

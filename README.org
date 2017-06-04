@@ -1,6 +1,6 @@
-#+title: mdlbench
+#+title: jtx1inst
 
-This project entails both, benchmarking of CUDA kernels against operational properties of devices e.g., GFLOPS/Watt and basic C library for accessing Tegra X1's INA3221 -- current and bus voltage monitor as well as on-module temperature sensors through sysf nodes and userspace I2C.
+Basic C library for accessing two Jetson TX1's INA3221 -- current and voltage monitors as well as on-module temperature sensors -- either through sysf nodes and userspace I2C.
 
 * Build and install
 #+begin_src sh
@@ -9,20 +9,6 @@ cd build
 cmake ..
 make
 #+end_src sh
-
-* Example
-The following listing shows an example output of double precision generalised matrix multi-
-plication on Jetson TX1.
-#+begin_example
-[INFO] Starting DGEMM benchmark...
-[INFO] GPU_RATE [Hz], EMC_RATE [Hz], GPU_POW [W], GPU_THERM [C], GFLOPS, GFLOPS/GPU_POW
-[0] 76800000, 204000000, 0.305, 33.000, 5.117, 16.778
-[1] 76800000, 408000000, 0.305, 33.000, 6.213, 20.372
-[2] 153600000, 204000000, 0.305, 33.000, 8.887, 29.137
-[3] 153600000, 408000000, 0.305, 33.000, 11.812, 38.726
-[INFO] Found solution...
-[3] 153600000, 408000000, 0.305000, 33.000000, 11.811535, 38.726341
-#+end_example
 
 * License
 See [[LICENSE]] file.
