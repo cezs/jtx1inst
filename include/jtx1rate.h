@@ -1,5 +1,5 @@
 /**
- * @file tx1rate.h
+ * @file jtx1rate.h
  * @author cs
  * @brief This header file contains the functions for setting and reading
  * Jetson TX1's GPU and EMC frequncies.

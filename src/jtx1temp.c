@@ -1,3 +1,9 @@
+/**
+ * @file jtx1temp.c
+ * @author cs
+ * @brief This file contains the implementations of functions 
+ * for reading Jetson TX1's values of thermal zones.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,6 +13,12 @@
 
 #include "jtx1temp.h"
 
+/**
+ * @brief Read on-chip and on-module temperatures.
+ *
+ * @param zone Indexed by ::jtx1_tzone
+ * @param *temp Reference to variable storing temperature
+ */
 void jtx1_get_temp(jtx1_tzone zone, unsigned int *temp)
 {
     FILE *fp;
