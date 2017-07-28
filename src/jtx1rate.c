@@ -1,3 +1,9 @@
+/**
+ * @file jtx1rate.c
+ * @author cs
+ * @brief This file contains the implementations of functions 
+ * for setting and reading Jetson TX1's GPU and EMC frequncies.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -7,6 +13,10 @@
 
 #include "jtx1rate.h"
 
+/**
+ * @brief Set operation frequency of graphics processing unit (GPU)
+ * @param gpu_rate An operation frequency
+ */
 static void jtx1_set_gpu_rate(const unsigned long gpu_rate)
 {
     int val = 1;
@@ -38,6 +48,10 @@ static void jtx1_set_gpu_rate(const unsigned long gpu_rate)
     
 }
 
+/**
+ * @brief Set operation frequency of external memory controller (EMC)
+ * @param emc_rate See ::jtx1_emc_freqs
+ */
 static void jtx1_set_emc_rate(const unsigned long emc_rate)
 {
     int val = 1;
@@ -65,6 +79,11 @@ static void jtx1_set_emc_rate(const unsigned long emc_rate)
 
 }
 
+/**
+ * @brief Set operation frequency of central processing unit (CPU)
+ * @param cpu_rate An operation frequency
+ * @param cpu Core selection
+ */
 static void jtx1_set_cpu_rate(const unsigned long cpu_rate, const unsigned int cpu)
 {
     FILE *fp[2];
@@ -93,6 +112,11 @@ static void jtx1_set_cpu_rate(const unsigned long cpu_rate, const unsigned int c
     }
 }
 
+/**
+ * @brief Read operating frequency
+ * @param unit See ::jtx1_unit
+ * @param *rate Output's reference
+ */
 void jtx1_get_rate(const jtx1_unit unit, unsigned long *rate)
 {
     FILE *fp;
@@ -124,7 +148,7 @@ void jtx1_get_rate(const jtx1_unit unit, unsigned long *rate)
 	fp = fopen("/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq", "r");
 	break;
     }
-    default:
+o    default:
 	break;
     }
 
@@ -141,6 +165,11 @@ void jtx1_get_rate(const jtx1_unit unit, unsigned long *rate)
     *rate = ra;
 }
 
+/**
+ * @brief Set operating frequency
+ * @param unit See ::jtx1_unit
+ * @param rate Operating frequency 
+ */
 void jtx1_set_rate(const jtx1_unit unit, const unsigned long rate)
 {
     switch (unit) {
