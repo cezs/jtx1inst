@@ -44,7 +44,7 @@ PROJECT_NUMBER         =
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Benchmark deep learning operations on mobile devices and access JTX1's current and voltage monitors, temperature sensors and various other SoC utilisation information"
+PROJECT_BRIEF          = "A custom C API for instrumenting Jetson TX1's SoM and SoC with the use of userspace I2C and sysfs files. This is small C library for accessing two Jetson TX1's INA3221 &#x2013; current and voltage monitors as well as on-module temperature sensors and other information such as GPU, CPUs and EMC operating frequencies &#x2013; either through sysf nodes or userspace I2C. "
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
