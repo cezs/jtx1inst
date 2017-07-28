@@ -1,8 +1,11 @@
 #+title: jtx1inst
 
-Basic C library for accessing two Jetson TX1's INA3221 -- current and voltage monitors as well as on-module temperature sensors and other information such as GPU, CPUs and EMC operating frequencies -- either through sysf nodes or userspace I2C.
+A custom C API for instrumenting Jetson TX1's SoM and SoC with the use of userspace I2C and sysfs files. This is small C library for accessing two Jetson TX1's INA3221 &#x2013; current and voltage monitors as well as on-module temperature sensors and other information such as GPU, CPUs and EMC operating frequencies &#x2013; either through sysf nodes or userspace I2C. The current version has been tested on the Jetson TX1 module with a SKU =699-82180-1000-100= obtained with =i2cdump -y -r 0x14-0x26 2 0x50 b= command. 
 
 * Build and install
+
+In order to build and install the library and sample programs use the following commands.
+
 #+begin_src sh
 mkdir build
 cd build
@@ -12,5 +15,58 @@ sudo make install
 sudo ldconfig
 #+end_src sh
 
+* Example
+
+Running the =jtx1inst_demo= program on the same module, results in the following output.
+
+#+begin_example
+[POWER] module power input: 3898.000mW
+[POWER] GPU power rail: 152.000mW
+[POWER] CPU power rail: 1757.000mW
+[POWER] main carrier board power input: 1632.000mW
+[POWER] main carrier board 5V supply: 2025.000mW
+[POWER] main carrier board 3.3V supply: 1632.000mW
+[POWER] carrier board 3.3V Sleep supply: 0.000mW
+[POWER] main carrier board 1.8V supply: 0.000mW
+[POWER] 3.3V supply for M.2 Key E connector: 0.000mW
+
+[CURRENT] module power input: 3860.000mA
+[CURRENT] GPU power rail: 152.000mA
+[CURRENT] CPU power rail: 840.000mA
+[CURRENT] main carrier board power input: 328.000mA
+[CURRENT] main carrier board 5V supply: 106.000mA
+[CURRENT] main carrier board 3.3V supply: 328.000mA
+[CURRENT] carrier board 3.3V Sleep supply: 0.000mA
+[CURRENT] main carrier board 1.8V supply: 0.000mA
+[CURRENT] 3.3V supply for M.2 Key E connector: 0.000mA
+
+[VOLTAGE] module power input: 3438.000mV
+[VOLTAGE] GPU power rail: 76.000mV
+[VOLTAGE] CPU power rail: 840.000mV
+[VOLTAGE] main carrier board power input: 4976.000mV
+[VOLTAGE] main carrier board 5V supply: 19112.000mV
+[VOLTAGE] main carrier board 3.3V supply: 4976.000mV
+[VOLTAGE] carrier board 3.3V Sleep supply: 3336.000mV
+[VOLTAGE] main carrier board 1.8V supply: 1832.000mV
+[VOLTAGE] 3.3V supply for M.2 Key E connector: 3336.000mV
+
+[TEMPERATURE] A0: 34000mC
+[TEMPERATURE] CPU: 29000mC
+[TEMPERATURE] GPU: 29000mC
+[TEMPERATURE] PLL: 29000mC
+[TEMPERATURE] PMIC: 100000mC
+[TEMPERATURE] TDIODE: 33750mC
+[TEMPERATURE] TBOARD: 33000mC
+[TEMPERATURE] FAN: 31250mC
+
+[FREQ] EMC: 1600000000Hz
+[FREQ] GPU: 76800000Hz
+[FREQ] CPU0: 1734000Hz
+[FREQ] CPU1: 1734000Hz
+[FREQ] CPU2: 1734000Hz
+[FREQ] CPU3: 1734000Hz
+#+end_example
+
 * License
-See [[LICENSE]] file.
+
+This is free and unencumbered software released into the public domain. For more information, please refer to the [[./LICENSE]] file.
