@@ -13,7 +13,7 @@ cmake ..
 make
 sudo make install
 sudo ldconfig
-#+end_src sh
+#+end_src
 
 * Example
 
@@ -66,6 +66,15 @@ Running the =jtx1inst_demo= program on the same module, results in the following
 [FREQ] CPU2: 1734000Hz
 [FREQ] CPU3: 1734000Hz
 #+end_example
+
+* Documentation
+
+In order to generate documentation from sources annotated with Doxygen use the following command in =doc= directory.
+
+#+begin_src sh
+doxygen config
+#+end_src
+
 
 * License
 
