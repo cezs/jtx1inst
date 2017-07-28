@@ -1,8 +1,9 @@
 /**
  * @file jtx1pow.h
  * @author cs
- * @brief This header file contains the function for accessing
- * on-board and on-module INA3221's values.
+ * @brief This file contains public declaration of the function 
+ * for accessing on-board and on-module INA3221's values together 
+ * with enumerated types.
  */
 #ifndef JTX1POW_H_
 #define JTX1POW_H_
