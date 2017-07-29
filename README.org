@@ -1,6 +1,6 @@
 #+title: jtx1inst
 
-A custom C API for instrumenting Jetson TX1's SoM and SoC with the use of userspace I2C and sysfs files. This is small C library for accessing two Jetson TX1's INA3221 &#x2013; current and voltage monitors as well as on-module temperature sensors and other information such as GPU, CPUs and EMC operating frequencies &#x2013; either through sysf nodes or userspace I2C. The current version has been tested on the Jetson TX1 module with a SKU =699-82180-1000-100= obtained with =i2cdump -y -r 0x14-0x26 2 0x50 b= command. 
+A custom C API for instrumenting Jetson TX1's SoM and SoC with the use of userspace I2C and sysfs files. This is small C library for accessing two Jetson TX1's INA3221 -- current and voltage monitors as well as on-module temperature sensors and other information such as GPU, CPUs and EMC operating frequencies -- either through sysf nodes or userspace I2C. The current version has been tested on the Jetson TX1 module with a SKU =699-82180-1000-100= obtained with =i2cdump -y -r 0x14-0x26 2 0x50 b= command. 
 
 * Build and install
 
