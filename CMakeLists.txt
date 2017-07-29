@@ -15,11 +15,7 @@ if(VERBOSE)
   add_definitions(-DVERBOSE)
 endif()
 
-################################################################################
-
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -O3 -Wall")
-
-################################################################################
 
 # Gather all source files
 file(GLOB SOURCES src/*.c)
@@ -48,13 +44,9 @@ install(TARGETS ${PROJECT_NAME} DESTINATION lib)
 file(GLOB HEADERS include/*.h)
 install(FILES ${HEADERS} DESTINATION include)
 
-################################################################################
-
 # Build example programs
 if(BUILD_EXAMPLES)
   add_executable(jtx1inst_demo samples/jtx1inst_demo.c)
   target_link_libraries(jtx1inst_demo ${PROJECT_NAME})
 endif()
-
-################################################################################
 
