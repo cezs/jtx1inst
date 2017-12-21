@@ -148,7 +148,7 @@ void jtx1_get_rate(const jtx1_unit unit, unsigned long *rate)
 	fp = fopen("/sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq", "r");
 	break;
     }
-o    default:
+    default:
 	break;
     }
 
