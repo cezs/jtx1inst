@@ -17,7 +17,7 @@ sudo ldconfig
 
 * Example
 
-Running the =jtx1inst_demo= program on the same module, results in the following output.
+Executing the =sudo jtx1inst_demo -b -m= where =-b= option stands for board and =-m= stands for module, results in the following output.
 
 #+begin_example
 [POWER] module power input: 3898.000mW
