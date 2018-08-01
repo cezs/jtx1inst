@@ -15,58 +15,6 @@ sudo make install
 sudo ldconfig
 #+end_src
 
-* Example
-
-Executing the =sudo jtx1inst_demo -b -m= where =-b= option stands for board and =-m= stands for module, results in the following output.
-
-#+begin_example
-[POWER] module power input: 3898.000mW
-[POWER] GPU power rail: 152.000mW
-[POWER] CPU power rail: 1757.000mW
-[POWER] main carrier board power input: 1632.000mW
-[POWER] main carrier board 5V supply: 2025.000mW
-[POWER] main carrier board 3.3V supply: 1632.000mW
-[POWER] carrier board 3.3V Sleep supply: 0.000mW
-[POWER] main carrier board 1.8V supply: 0.000mW
-[POWER] 3.3V supply for M.2 Key E connector: 0.000mW
-
-[CURRENT] module power input: 3860.000mA
-[CURRENT] GPU power rail: 152.000mA
-[CURRENT] CPU power rail: 840.000mA
-[CURRENT] main carrier board power input: 328.000mA
-[CURRENT] main carrier board 5V supply: 106.000mA
-[CURRENT] main carrier board 3.3V supply: 328.000mA
-[CURRENT] carrier board 3.3V Sleep supply: 0.000mA
-[CURRENT] main carrier board 1.8V supply: 0.000mA
-[CURRENT] 3.3V supply for M.2 Key E connector: 0.000mA
-
-[VOLTAGE] module power input: 3438.000mV
-[VOLTAGE] GPU power rail: 76.000mV
-[VOLTAGE] CPU power rail: 840.000mV
-[VOLTAGE] main carrier board power input: 4976.000mV
-[VOLTAGE] main carrier board 5V supply: 19112.000mV
-[VOLTAGE] main carrier board 3.3V supply: 4976.000mV
-[VOLTAGE] carrier board 3.3V Sleep supply: 3336.000mV
-[VOLTAGE] main carrier board 1.8V supply: 1832.000mV
-[VOLTAGE] 3.3V supply for M.2 Key E connector: 3336.000mV
-
-[TEMPERATURE] A0: 34000mC
-[TEMPERATURE] CPU: 29000mC
-[TEMPERATURE] GPU: 29000mC
-[TEMPERATURE] PLL: 29000mC
-[TEMPERATURE] PMIC: 100000mC
-[TEMPERATURE] TDIODE: 33750mC
-[TEMPERATURE] TBOARD: 33000mC
-[TEMPERATURE] FAN: 31250mC
-
-[FREQ] EMC: 1600000000Hz
-[FREQ] GPU: 76800000Hz
-[FREQ] CPU0: 1734000Hz
-[FREQ] CPU1: 1734000Hz
-[FREQ] CPU2: 1734000Hz
-[FREQ] CPU3: 1734000Hz
-#+end_example
-
 * Documentation
 
 In order to generate documentation from sources annotated with Doxygen use the following command in [[./doc][doc]] directory.
