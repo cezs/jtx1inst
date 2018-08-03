@@ -147,7 +147,9 @@ static void jtx1_get_ina3221_sysf(jtx1_rail rail,
  * @param rail Indexed by ::jtx1_rail
  * @param *val Output's reference
  */
-static int jtx1_get_ina3221_userspace_i2c(int rail, unsigned int *val)
+static void jtx1_get_ina3221_userspace_i2c(jtx1_rail rail,
+					   jtx1_rail_type measure,
+					   unsigned int *val)
 {
   int file;
   int adapter_nr = 1;
@@ -178,7 +180,22 @@ static int jtx1_get_ina3221_userspace_i2c(int rail, unsigned int *val)
   curr = calcCurr(vshunt, rshunt[rail]);
   power = calcPow(vbus, curr);
 
-  *val = power;
+  switch (measure) {
+  case 0: {
+    *val = voltage;
+    break;
+  }
+  case 1: {
+    *val = power;
+    break;
+  }
+  case 2: {
+    *val = current;
+    break;
+  }
+  default:
+    break;
+  }
 
   close(file);
 
@@ -203,7 +220,7 @@ void jtx1_get_ina3221(jtx1_rail rail,
 {
 
   if (rail >= 0 && rail <= 2) {
-    jtx1_get_ina3221_userspace_i2c(rail, val);
+    jtx1_get_ina3221_userspace_i2c(rail, measure, val);
   } else if (rail >= 3 && rail <= 8) {
     jtx1_get_ina3221_sysf(rail, measure, val);
   } else {}
