@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     if (printModuleInfo) {
       jtx1_get_ina3221(VDD_IN, POWER, &val);
       printf("[POWER] module power input: %.3f%s\n", convFromMilli * val, wunit);
-      jtx1_get_ina3221(VDD_CPU, POWER, &val);
+      jtx1_get_ina3221(VDD_GPU, POWER, &val);
       printf("[POWER] GPU power rail: %.3f%s\n", convFromMilli * val, wunit);
       jtx1_get_ina3221(VDD_CPU, POWER, &val);
       printf("[POWER] CPU power rail: %.3f%s\n", convFromMilli * val, wunit);
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     if (printModuleInfo) {
       jtx1_get_ina3221(VDD_IN, CURRENT, &val);
       printf("[CURRENT] module power input: %.3f%s\n", convFromMilli * val, aunit);
-      jtx1_get_ina3221(VDD_CPU, CURRENT, &val);
+      jtx1_get_ina3221(VDD_GPU, CURRENT, &val);
       printf("[CURRENT] GPU power rail: %.3f%s\n", convFromMilli * val, aunit);
       jtx1_get_ina3221(VDD_CPU, CURRENT, &val);
       printf("[CURRENT] CPU power rail: %.3f%s\n", convFromMilli * val, aunit);
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
     if (printModuleInfo) {
       jtx1_get_ina3221(VDD_IN, VOLTAGE, &val);
       printf("[VOLTAGE] module power input: %.3f%s\n", convFromMilli * val, vunit);
-      jtx1_get_ina3221(VDD_CPU, VOLTAGE, &val);
+      jtx1_get_ina3221(VDD_GPU, VOLTAGE, &val);
       printf("[VOLTAGE] GPU power rail: %.3f%s\n", convFromMilli * val, vunit);
       jtx1_get_ina3221(VDD_CPU, VOLTAGE, &val);
       printf("[VOLTAGE] CPU power rail: %.3f%s\n", convFromMilli * val, vunit);
