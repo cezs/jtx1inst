@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     unsigned int val;
     unsigned long rate;
     float convFromMilli;
-    char *wunit, *aunit, *vunit;
+    char *wunit, *aunit, *vunit, *cunit;
     int convert;
 
     bool printModuleInfo;
@@ -43,18 +43,20 @@ int main(int argc, char *argv[])
 	}
     }
 
-    convert = 0;
+    convert = 1;
 
     if (convert) {
       convFromMilli = 0.001;
       wunit = "W";
       aunit = "A";
       vunit = "V";
+      cunit = "°C";
     } else {
       convFromMilli = 1;
       wunit = "mW";
       aunit = "mA";
       vunit = "mV";
+      cunit = "°mC";
     }
 
     if (printModuleInfo) {
@@ -131,23 +133,23 @@ int main(int argc, char *argv[])
 
     if (printModuleInfo) {
       jtx1_get_temp(A0, &val);
-      printf("[TEMPERATURE] A0: %dmC\n", val);
+      printf("[TEMPERATURE] A0: %.3f%s\n", convFromMilli * val, cunit);
       jtx1_get_temp(CPU, &val);
-      printf("[TEMPERATURE] CPU: %dmC\n", val);
+      printf("[TEMPERATURE] CPU: %.3f%s\n", convFromMilli * val, cunit);
       jtx1_get_temp(GPU, &val);
-      printf("[TEMPERATURE] GPU: %dmC\n", val);
+      printf("[TEMPERATURE] GPU: %.3f%s\n", convFromMilli * val, cunit);
       jtx1_get_temp(PLL, &val);
-      printf("[TEMPERATURE] PLL: %dmC\n", val);
+      printf("[TEMPERATURE] PLL: %.3f%s\n", convFromMilli * val, cunit);
     }
     if (printBoardInfo) {
       jtx1_get_temp(PMIC, &val);
-      printf("[TEMPERATURE] PMIC: %dmC\n", val);
+      printf("[TEMPERATURE] PMIC: %.3f%s\n", convFromMilli * val, cunit);
       jtx1_get_temp(TDIODE, &val);
-      printf("[TEMPERATURE] TDIODE: %dmC\n", val);
+      printf("[TEMPERATURE] TDIODE: %.3f%s\n", convFromMilli * val, cunit);
       jtx1_get_temp(TBOARD, &val);
-      printf("[TEMPERATURE] TBOARD: %dmC\n", val);
+      printf("[TEMPERATURE] TBOARD: %.3f%s\n", convFromMilli * val, cunit);
       jtx1_get_temp(FAN, &val);
-      printf("[TEMPERATURE] FAN: %dmC\n", val);
+      printf("[TEMPERATURE] FAN: %.3f%s\n", convFromMilli * val, cunit);
     }
     printf("\n");
 
