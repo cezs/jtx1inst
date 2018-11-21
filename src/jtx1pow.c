@@ -182,7 +182,7 @@ static void jtx1_get_ina3221_userspace_i2c(jtx1_rail rail,
 
   switch (measure) {
   case 0: {
-    *val = voltage;
+    *val = vshunt;
     break;
   }
   case 1: {
@@ -190,7 +190,7 @@ static void jtx1_get_ina3221_userspace_i2c(jtx1_rail rail,
     break;
   }
   case 2: {
-    *val = current;
+    *val = curr;
     break;
   }
   default:
