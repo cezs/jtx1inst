@@ -165,6 +165,7 @@ int main(int argc, char *argv[])
       jtx1_get_rate(CPU2_RATE, &rate);
       printf("[FREQ] CPU2: %luHz\n", rate);
       jtx1_get_rate(CPU3_RATE, &rate);
+      printf("[FREQ] CPU3: %luHz\n", rate);
     }
     
     return 0;
