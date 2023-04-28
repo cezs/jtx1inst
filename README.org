@@ -15,12 +15,22 @@ sudo make install
 sudo ldconfig
 #+end_src
 
+* Run demo
+
+#+begin_src sh
+cd build
+watch -n 1 ./jtx1inst_demo -b
+sudo watch -n 1 ./jtx1inst_demo -bm
+#+end_src
+
 * Documentation
 
 In order to generate documentation from sources annotated with Doxygen use the following command in [[./doc][doc]] directory.
 
 #+begin_src sh
+cd doc
 doxygen config
+xdg-open html/files.html
 #+end_src
 
 
